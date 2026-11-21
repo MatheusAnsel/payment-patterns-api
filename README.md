@@ -1,6 +1,9 @@
 # payment-patterns-api
 
 [![CI](https://github.com/MatheusAnsel/payment-patterns-api/actions/workflows/ci.yml/badge.svg)](https://github.com/MatheusAnsel/payment-patterns-api/actions/workflows/ci.yml)
+![Java 21](https://img.shields.io/badge/Java-21-007396)
+![Spring Boot 3.5](https://img.shields.io/badge/Spring%20Boot-3.5-6DB33F)
+![PostgreSQL 16](https://img.shields.io/badge/PostgreSQL-16-336791)
 
 API REST de pagamentos de pedidos feita com Spring Boot. Aceita Pix, cartão de crédito e boleto, e cada método tem suas próprias regras de taxa, parcelamento e aprovação.
 
@@ -17,6 +20,7 @@ O projeto nasceu do desafio "Explorando Padrões de Projetos na Prática com Jav
 - [Testes](#testes)
 - [Estrutura do projeto](#estrutura-do-projeto)
 - [Decisões e limitações](#decisões-e-limitações)
+- [Próximos passos](#próximos-passos)
 - [Tecnologias](#tecnologias)
 
 ## Padrões de projeto
@@ -346,6 +350,14 @@ src/main/java/com/matheusansel/payments
 - Dias úteis do boleto consideram apenas fins de semana. Feriados nacionais ficariam em uma tabela ou serviço de calendário.
 - A notificação é simulada com log. Em um sistema real, o listener publicaria em uma fila ou chamaria um serviço de e-mail.
 - Não há autenticação, já que o foco do projeto são os padrões de projeto.
+
+## Próximos passos
+
+- Garantir a regra de pedido duplicado no banco, com índice único parcial em `pedido_id` para os status `PENDENTE` e `APROVADO`, e devolver 409 quando houver conflito.
+- Aceitar um header `Idempotency-Key` no `POST /api/pagamentos`, para que o cliente possa repetir a requisição com segurança.
+- Publicar os eventos de pagamento em uma fila (RabbitMQ ou Kafka) no lugar do log de notificação.
+- Proteger os endpoints com Spring Security e JWT.
+- Rodar os testes de integração contra PostgreSQL real com Testcontainers, além do H2.
 
 ## Tecnologias
 
