@@ -16,7 +16,7 @@ public class ValorMaximoValidador extends ValidadorAntifraude {
     protected void verificar(ContextoValidacao contexto) {
         if (contexto.valor().compareTo(VALOR_MAXIMO) > 0) {
             throw new PagamentoBloqueadoException("VALOR_MAXIMO",
-                    "Valor acima do maximo permitido por transacao (R$ 50.000,00)");
+                    "Valor acima do máximo permitido por transação (R$ 50.000,00)");
         }
     }
 }

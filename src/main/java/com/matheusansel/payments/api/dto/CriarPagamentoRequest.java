@@ -26,7 +26,7 @@ public record CriarPagamentoRequest(
         @NotNull
         MetodoPagamento metodo,
 
-        @Schema(description = "Apenas para cartao de credito (1 a 12). Padrao: 1", example = "6")
+        @Schema(description = "Apenas para cartão de crédito (1 a 12). Padrão: 1", example = "6")
         @Min(1) @Max(12)
         Integer parcelas
 ) {

@@ -13,8 +13,8 @@ public class OpenApiConfig {
         return new OpenAPI().info(new Info()
                 .title("Payment Patterns API")
                 .version("1.0.0")
-                .description("API de pagamentos de pedidos (Pix, cartao de credito e boleto) "
-                        + "construida para demonstrar Strategy, Factory, Facade, Observer, Singleton "
+                .description("API de pagamentos de pedidos (Pix, cartão de crédito e boleto) "
+                        + "construída para demonstrar Strategy, Factory, Facade, Observer, Singleton "
                         + "e Chain of Responsibility."));
     }
 }

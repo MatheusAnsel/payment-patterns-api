@@ -36,7 +36,7 @@ public class CartaoCreditoStrategy implements MetodoPagamentoStrategy {
     public ResultadoProcessamento processar(DadosPagamento dados) {
         int parcelas = dados.parcelas() == null ? 1 : dados.parcelas();
         if (parcelas < 1 || parcelas > MAX_PARCELAS) {
-            throw new RegraNegocioException("Cartao de credito aceita de 1 a " + MAX_PARCELAS + " parcelas");
+            throw new RegraNegocioException("Cartão de crédito aceita de 1 a " + MAX_PARCELAS + " parcelas");
         }
 
         BigDecimal valor = Dinheiro.arredondar(dados.valor());
@@ -53,7 +53,7 @@ public class CartaoCreditoStrategy implements MetodoPagamentoStrategy {
 
         if (valor.compareTo(LIMITE) > 0) {
             return new ResultadoProcessamento(StatusPagamento.RECUSADO, taxa, valorFinal, parcelas, valorParcela,
-                    null, "Valor acima do limite de R$ 10.000,00 para cartao de credito");
+                    null, "Valor acima do limite de R$ 10.000,00 para cartão de crédito");
         }
         return new ResultadoProcessamento(StatusPagamento.APROVADO, taxa, valorFinal, parcelas, valorParcela,
                 null, null);

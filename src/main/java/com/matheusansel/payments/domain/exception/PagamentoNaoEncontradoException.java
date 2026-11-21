@@ -5,6 +5,6 @@ import java.util.UUID;
 public class PagamentoNaoEncontradoException extends RuntimeException {
 
     public PagamentoNaoEncontradoException(UUID id) {
-        super("Pagamento " + id + " nao encontrado");
+        super("Pagamento " + id + " não encontrado");
     }
 }

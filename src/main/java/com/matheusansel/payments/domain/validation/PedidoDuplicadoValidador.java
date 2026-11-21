@@ -25,7 +25,7 @@ public class PedidoDuplicadoValidador extends ValidadorAntifraude {
     protected void verificar(ContextoValidacao contexto) {
         if (repository.existsByPedidoIdAndStatusIn(contexto.pedidoId(), STATUS_ATIVOS)) {
             throw new PagamentoBloqueadoException("PEDIDO_DUPLICADO",
-                    "Ja existe um pagamento pendente ou aprovado para o pedido " + contexto.pedidoId());
+                    "Já existe um pagamento pendente ou aprovado para o pedido " + contexto.pedidoId());
         }
     }
 }

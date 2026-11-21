@@ -27,7 +27,7 @@ public class HorarioValidador extends ValidadorAntifraude {
         boolean madrugada = agora.isBefore(FIM_MADRUGADA);
         if (madrugada && contexto.valor().compareTo(LIMITE_MADRUGADA) > 0) {
             throw new PagamentoBloqueadoException("HORARIO",
-                    "Pagamentos acima de R$ 1.000,00 nao sao permitidos entre 00:00 e 06:00");
+                    "Pagamentos acima de R$ 1.000,00 não são permitidos entre 00:00 e 06:00");
         }
     }
 }

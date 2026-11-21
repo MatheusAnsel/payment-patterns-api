@@ -44,24 +44,24 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(RegraNegocioException.class)
     public ProblemDetail regraNegocio(RegraNegocioException ex) {
-        return problema(HttpStatus.UNPROCESSABLE_ENTITY, "regra-negocio", "Regra de negocio violada", ex.getMessage());
+        return problema(HttpStatus.UNPROCESSABLE_ENTITY, "regra-negocio", "Regra de negócio violada", ex.getMessage());
     }
 
     @ExceptionHandler(PagamentoNaoEncontradoException.class)
     public ProblemDetail naoEncontrado(PagamentoNaoEncontradoException ex) {
-        return problema(HttpStatus.NOT_FOUND, "nao-encontrado", "Pagamento nao encontrado", ex.getMessage());
+        return problema(HttpStatus.NOT_FOUND, "nao-encontrado", "Pagamento não encontrado", ex.getMessage());
     }
 
     @ExceptionHandler(OptimisticLockingFailureException.class)
     public ProblemDetail conflito(OptimisticLockingFailureException ex) {
-        return problema(HttpStatus.CONFLICT, "conflito", "Conflito de atualizacao",
-                "O pagamento foi alterado por outra requisicao. Consulte o estado atual e tente novamente.");
+        return problema(HttpStatus.CONFLICT, "conflito", "Conflito de atualização",
+                "O pagamento foi alterado por outra requisição. Consulte o estado atual e tente novamente.");
     }
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ProblemDetail parametroInvalido(MethodArgumentTypeMismatchException ex) {
-        return problema(HttpStatus.BAD_REQUEST, "parametro-invalido", "Parametro invalido",
-                "Valor invalido para o parametro '" + ex.getName() + "'");
+        return problema(HttpStatus.BAD_REQUEST, "parametro-invalido", "Parâmetro inválido",
+                "Valor inválido para o parâmetro '" + ex.getName() + "'");
     }
 
     @Override
@@ -73,8 +73,8 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         for (FieldError erro : ex.getBindingResult().getFieldErrors()) {
             campos.putIfAbsent(erro.getField(), erro.getDefaultMessage());
         }
-        ProblemDetail problema = problema(HttpStatus.BAD_REQUEST, "validacao", "Dados invalidos",
-                "Um ou mais campos estao invalidos");
+        ProblemDetail problema = problema(HttpStatus.BAD_REQUEST, "validacao", "Dados inválidos",
+                "Um ou mais campos estão inválidos");
         problema.setProperty("campos", campos);
         return ResponseEntity.badRequest().body(problema);
     }

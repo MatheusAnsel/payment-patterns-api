@@ -9,7 +9,7 @@ final class ValidacoesComuns {
 
     static void exigirPagamentoAVista(DadosPagamento dados, String nomeMetodo) {
         if (dados.parcelas() != null && dados.parcelas() != 1) {
-            throw new RegraNegocioException(nomeMetodo + " nao aceita parcelamento");
+            throw new RegraNegocioException(nomeMetodo + " não aceita parcelamento");
         }
     }
 }
