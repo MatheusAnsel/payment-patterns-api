@@ -23,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Clock;
 import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.UUID;
 
 /**
@@ -105,7 +106,11 @@ public class CheckoutFacade {
         }
     }
 
+    /**
+     * Truncado em microssegundos, a precisao do TIMESTAMP do PostgreSQL. Sem isso a resposta do POST
+     * traria nanossegundos e um GET logo depois devolveria um valor diferente para o mesmo campo.
+     */
     private Instant agora() {
-        return clock.instant();
+        return clock.instant().truncatedTo(ChronoUnit.MICROS);
     }
 }
